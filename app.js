@@ -1,4 +1,4 @@
-const arrData = [];
+const arrData = JSON.parse(localStorage.getItem('todos')) || [];
 storeData();
 function storeData() {
     let tableData = '';
@@ -22,6 +22,7 @@ function storeData() {
         tableData += htmlElement;
 
         document.querySelector('.tableData').innerHTML = tableData;
+        localStorage.setItem('todos', JSON.stringify(arrData));
         console.log(htmlElement);
     }
 
@@ -41,4 +42,8 @@ function addTodo() {
     }
     console.log(arrData);
 
+}
+
+function removeData() {
+    
 }
