@@ -43,10 +43,22 @@ table {
     font-weight: normal;
     margin-top: 20px;
     font-family: 'Courier New', Courier, monospace;
-    width: 100%;
 }
 
-#done {
+.tableData {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+table tr td {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: end;
+}
+
+.done {
     padding-inline: 15px;
     padding-block: 5px;
     background-color: rgb(41,79,223);
@@ -55,16 +67,26 @@ table {
     color: white;
 }
 
-#remove {
+.remove {
+    margin: 0;
     display: flex;
     border: none;
     background-color: white;
     align-items: center;
-    margin-left: 5px;
     transition: .3s ease-in-out;
 }
 
-#remove:hover {
+.remove:hover {
     background-color: rgb(220, 218, 218);
     border-radius: 50%;
 }
+
+/* .undraw {
+    display: block;
+}
+
+@media screen and (min-width: 480px) {
+    .undraw {
+        display: none;
+    }
+} */

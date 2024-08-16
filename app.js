@@ -5,10 +5,23 @@ function storeData() {
     
     for(let i = 0; i < arrData.length; i++) {
         const todo = arrData[i];
-        let htmlElement = document.querySelector(".thisTH").innerHTML = todo;;
-        // tableData += htmlElement;
+        let htmlElement = `
+            <table>
+                <tr>
+                    <td>
+                        ${todo}
+                        <button class="done">Done</button>
+                        <button class="remove">
+                             <svg class="  text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                            </svg>                          
+                        </button>
+                    </td>
+                </tr>
+            </table>`
+        tableData += htmlElement;
 
-        // document.querySelector('.thisTH').innerHTML = todo;
+        document.querySelector('.tableData').innerHTML = tableData;
         console.log(htmlElement);
     }
 
