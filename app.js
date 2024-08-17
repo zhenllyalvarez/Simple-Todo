@@ -1,18 +1,20 @@
 const arrData = JSON.parse(localStorage.getItem('todos')) || [];
+console.log(arrData);
 storeData();
 function storeData() {
     let tableData = '';
     
     for(let i = 0; i < arrData.length; i++) {
         const todo = arrData[i];
+        const { data, date, isDone } = todo;
+
         let htmlElement = `
             <table>
                 <tr>
-                    <td>
-                        ${todo}
-                        <button class="done">Done</button>
-                        <button class="remove" onclick="arrData.splice(${i}, 1);
-                        storeData();
+                    <td class="${isDone ? 'line-through text-gray-500': ''}">
+                        ${data} ${date}
+                        <button class="done" onclick="doneData(${i})">Done</button>
+                        <button class="remove" onclick="removeData(${i});
                         ">
                              <svg class="  text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
@@ -20,35 +22,44 @@ function storeData() {
                         </button>
                     </td>
                 </tr>
-            </table>`
+            </table>`;
         tableData += htmlElement;
+    }
 
         document.querySelector('.tableData').innerHTML = tableData;
         localStorage.setItem('todos', JSON.stringify(arrData));
-        console.log(htmlElement);
-        console.log(arrData);
-    }
-
 }
 
 function addTodo() {
     let inputElement = document.querySelector(".inputfield");
+    let dateElement = document.querySelector(".date");
 
     const data = inputElement.value;
+    const date = dateElement.value;
+    
 
-    if(data) {
-        arrData.push(data);
-        storeData();
+    if(data && date) {
+        arrData.push({
+            data,
+            date,
+            isDone: false
+        });
         inputElement.value = "";
+        dateElement.value = "";
+        storeData();
     } else {
-        alert("Empty input field!");
+        alert("Empty input field or date!");
     }
     console.log(arrData);
-
 }
 
-// function removeData() {
-//     for(let i = 0; i < arrData.length; i++) {
-//         arrData.splice(i, 1);
-//     }
-// }
+function doneData(index) {
+    arrData[index].isDone = !arrData[index].isDone;
+    
+    storeData();
+}
+
+function removeData(index) {
+    arrData.splice(index, 1);
+    storeData();
+}
