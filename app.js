@@ -26,7 +26,16 @@ function storeData() {
         tableData += htmlElement;
     }
 
-        document.querySelector('.tableData').innerHTML = tableData;
+        const tableContainer = document.querySelector('.tableData');
+        tableContainer.innerHTML = tableData
+
+        if(arrData.length > 5) {
+            tableContainer.style.height = "200px"
+            tableContainer.style.overflowY = "scroll";
+        } else {
+            tableContainer.style.height = 'auto';
+            tableContainer.style.overflowY = 'unset';
+        }
         localStorage.setItem('todos', JSON.stringify(arrData));
 }
 
